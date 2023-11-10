@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <script src="http://hongru.github.io/proj/canvas2image/canvas2image.js"></script>
+    <script>
+        function invert() {
+            var invertImage = document.getElementById("image").style.filter = "invert(100%)";
+            const x = document.getElementById("invertImage");
+            x.src = invertImage;
+            //var invertImagePNG = invertImage.toDataURL("image/png");
+            // document.getElementById('invertImage').src = document.getElementById("image").style.filter = "invert(100%)";
+            // document.getElementById("image").style.filter="grayscale(100%)";
+            var canvas1 = document.getElementById("canvas1");
+            var context1 = canvas1.getContext("2d");
+
+            var image1 = document.getElementById("image");
+
+            context1.filter = 'grayscale(1)';
+
+            context1.drawImage(image1, 385, 220,
+                110, 80,
+                0, 0,
+                110, 100);
+
+            var canvas2 = document.getElementById("canvas2");
+            var context2 = canvas2.getContext("2d");
+
+            var image2 = document.getElementById("canvas1");
+
+            context2.filter = 'invert(1)';
+
+            context2.drawImage(image2, 0, 0);
+
+            // SAVE THE PICTURE
+            // GET URL OF THE PICTURE
+            // const myCanvas = document.querySelector("#canvas2");
+            const myCanvas = document.querySelector("#canvas1");
+
+            const dataURI = document.getElementById('canvas2').toDataURL("image/png");
+            const canvasURI = myCanvas.toDataURL("image/png"); 
+
+            console.log(canvasURI); 
+
+            // Canvas2Image.saveAsPNG(canvas2)
+
+            // IE/Edge Support (PNG Only)
+            // if (window.navigator.msSaveBlob) {
+            //     window.navigator.msSaveBlob(myCanvas.msToBlob(), "canvas-image.png");
+            // } else { // for Chrome and Firefox
+            //     const a = document.createElement("a");
+            //     document.body.appendChild(a);
+            //     a.href = myCanvas.toDataURL();
+            //     console.log(a.href);
+            //     a.download = "canvas-image.png";
+            //     a.click();
+            //     document.body.removeChild(a);
+            // }
+        }
+        function gs() {
+            document.getElementById("invert-image").style.filter = "grayscale(100%)";
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <img id="image" 
+            
+            src="https://firebasestorage.googleapis.com/v0/b/marc-6d5c6.appspot.com/o/data%2Fphoto.jpg?alt=media&token=159659a1-9bc0-4510-8e2f-914ccb5d3449&_gl=1*irga0x*_ga*MTYzMTYyOTQ5NS4xNjgwMDg5MDc3*_ga_CW55HF8NVT*MTY5ODA3MTY4MC4xNjkuMS4xNjk4MDcxNjgzLjU3LjAuMA.."
+            onclick="invert()"></img>
+    </div>
+    <button onclick="invert()">CROP</button>
+    <div>
+        <img  src="" id="invertImage"></img>
+    </div>
+    <div>
+        <canvas  width="100" height="80" id="canvas1">
+
+        </canvas>
+    </div>
+    <div>
+        <canvas width="100" height="80" id="canvas2">
+
+        </canvas>
+    </div>
+    <!-- <img id="image" src="https://firebasestorage.googleapis.com/v0/b/marc-6d5c6.appspot.com/o/data%2Fphoto.jpg?alt=media&token=159659a1-9bc0-4510-8e2f-914ccb5d3449&_gl=1*irga0x*_ga*MTYzMTYyOTQ5NS4xNjgwMDg5MDc3*_ga_CW55HF8NVT*MTY5ODA3MTY4MC4xNjkuMS4xNjk4MDcxNjgzLjU3LjAuMA.." onclick="gs()"></img> -->
+</body>
+
+</html>
